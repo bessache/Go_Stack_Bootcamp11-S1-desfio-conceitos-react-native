@@ -39,25 +39,29 @@ export default function App() {
     <>
       <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
       <SafeAreaView style={styles.container}>
-        <View style={styles.repositoryContainer}>
-          <Text style={styles.repository}>Repository 1</Text>
+        <FlatList
+        data={repositories}
+        keyExtractor={repository =>repository.id}
+        renderItem={({item: repository}) =>(
+          <View style={styles.repositoryContainer}>
+            <Text style={styles.repository}>Repository 1</Text>
 
-          <View style={styles.techsContainer}>
-            <Text style={styles.tech}>
-              ReactJS
-            </Text>
-            <Text style={styles.tech}>
-              Node.js
-            </Text>
-          </View>
+            <View style={styles.techsContainer}>
+              <Text style={styles.tech}>
+                ReactJS
+              </Text>
+              <Text style={styles.tech}>
+                Node.js
+              </Text>
+            </View>
 
-          <View style={styles.likesContainer}>
-            <Text
-              style={styles.likeText}
-              testID={`repository-likes-${repository.id}`}
-            >
-              {repository.likes} curtida{repository.likes > 1 ? 's' : ''}
-            </Text>
+            <View style={styles.likesContainer}>
+              <Text
+                style={styles.likeText}
+                testID={`repository-likes-${repository.id}`}
+              >
+                {repository.likes} curtida{repository.likes > 1 ? 's' : ''}
+              </Text>
           </View>
 
           <TouchableOpacity
@@ -68,6 +72,8 @@ export default function App() {
             <Text style={styles.buttonText}>Curtir</Text>
           </TouchableOpacity>
         </View>
+        )}
+        />
       </SafeAreaView>
     </>
   );
